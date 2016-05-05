@@ -10,14 +10,14 @@ import static java.lang.System.out;
  * Created by bubblebitoey on 5/5/59.
  */
 public class Task2 implements Runnable {
+	/**
+	 * Attribute
+	 */
 	private BufferedReader br;
 
-
 	/**
-		 * Process all the words in a file (one word per line) using BufferedReader
-		 * and the readLine() method.  readLine() returns null when there is no more input.
-		 * Display summary statistics and elapsed time.
-		 */
+	 * initialize br with new value.
+	 */
 	public Task2() {
 		try {
 			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
@@ -27,6 +27,11 @@ public class Task2 implements Runnable {
 
 	}
 
+	/**
+	 * Process all the words in a file (one word per line) using BufferedReader
+	 * and the readLine() method.  readLine() returns null when there is no more input.
+	 * run task
+	 */
 	public void run() {
 		try {
 
@@ -49,6 +54,10 @@ public class Task2 implements Runnable {
 		}
 	}
 
+	/**
+		 *
+		 * @return String to print process of the task.
+		 */
 	public String toString() {
 		return "Starting task: read words using BufferedReader.readLine() with a loop";
 	}

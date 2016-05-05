@@ -13,17 +13,15 @@ import static java.lang.System.out;
  * Created by bubblebitoey on 5/5/59.
  */
 public class Task4 implements Runnable {
+	/**
+	 * Attribute
+	 */
 	private BufferedReader br;
 
 
 	/**
-		 * Process all the words in a file (one word per line) using BufferedReader
-		 * and the lines() method which creates a Stream of Strings (one item per line).
-		 * Then use the stream to compute summary statistics.
-		 * This is same as task3, except we use a Collector instead of Consumer.
-		 */
-
-
+	 * Constructor
+	 */
 	public Task4() {
 		try {
 			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
@@ -32,6 +30,14 @@ public class Task4 implements Runnable {
 		}
 
 	}
+
+	/**
+	 * Process all the words in a file (one word per line) using BufferedReader
+	 * and the lines() method which creates a Stream of Strings (one item per line).
+	 * Then use the stream to compute summary statistics.
+	 * This is same as task3, except we use a Collector instead of Consumer.
+	 * run task
+	 */
 
 	public void run() {
 		// We want the Consumer to add to the count and total length,
@@ -59,6 +65,9 @@ public class Task4 implements Runnable {
 		out.printf("Average length of %,d words is %.2f\n", count, averageLength);
 	}
 
+	/**
+	 * @return String to print process of the task.
+	 */
 	public String toString() {
 		return "Starting task: read words using BufferedReader and Stream with Collector";
 	}

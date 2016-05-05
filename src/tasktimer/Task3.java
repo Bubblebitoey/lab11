@@ -10,7 +10,21 @@ import static java.lang.System.out;
  * Created by bubblebitoey on 5/5/59.
  */
 public class Task3 implements Runnable {
+	/**
+	 * Attributes
+	 */
 	private BufferedReader br;
+
+	/**
+	 * Constructor
+	 */
+	public Task3() {
+		try {
+			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
+		} catch (Exception ex) {
+			out.println("Could not open dictionary: " + ex.getMessage());
+		}
+	}
 
 	/**
 	 * Process all the words in a file (one word per line) using BufferedReader
@@ -20,16 +34,8 @@ public class Task3 implements Runnable {
 	 * so (as a cludge) we use an attribute for the count.
 	 * When this method is rewritten as a Runnable, it can be a non-static attribute
 	 * of the runnable.
-	 * Display summary statistics and elapsed time.
+	 * run task
 	 */
-
-	public Task3() {
-		try {
-			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
-		} catch (Exception ex) {
-			out.println("Could not open dictionary: " + ex.getMessage());
-		}
-	}
 
 	public void run() {
 
@@ -50,6 +56,9 @@ public class Task3 implements Runnable {
 		out.printf("Average length of %,d words is %.2f\n", counter.getCount(), counter.average());
 	}
 
+	/**
+	 * @return String to print process of the task.
+	 */
 	public String toString() {
 		return "Starting task: read words using BufferedReader and Stream";
 	}

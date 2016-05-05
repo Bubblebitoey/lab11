@@ -15,6 +15,10 @@ import java.util.concurrent.atomic.*;  // hack, using AtomicInteger as accumulat
  * TODO Improve this code by restructuring it to eliminate duplicate code.
  */
 public class TaskTimer {
+	/**
+	 *
+	 * @param task it mean task that we had separated.
+	 */
 
 	public static void execAndPrint(Runnable task) {
 

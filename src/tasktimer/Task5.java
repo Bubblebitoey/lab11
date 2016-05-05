@@ -11,15 +11,16 @@ import static java.lang.System.out;
  */
 public class Task5 implements Runnable {
 
+	/**
+	 * Attributes
+	 */
 	// Limit number of words read.  Otherwise, the next task could be very sloooow.
 	static final int MAXCOUNT = 50_000;
 	private BufferedReader br;
 
 	/**
-		 * Append all the words from the dictionary to a String.
-		 * This shows why you should be careful about using "string1"+"string2".
-		 */
-
+	 * Constructor
+	 */
 	public Task5() {
 		try {
 			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
@@ -28,6 +29,12 @@ public class Task5 implements Runnable {
 		}
 
 	}
+
+	/**
+	 * Append all the words from the dictionary to a String.
+	 * This shows why you should be careful about using "string1"+"string2".
+	 * run task
+	 */
 
 	public void run() {
 		// initialize
@@ -45,6 +52,9 @@ public class Task5 implements Runnable {
 		System.out.printf("Done appending %d words to string.\n", count);
 	}
 
+	/**
+	 * @return String to print process of the task.
+	 */
 	public String toString() {
 		return "Starting task: append " + MAXCOUNT + " words to a String using +";
 	}

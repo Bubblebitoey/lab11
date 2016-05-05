@@ -9,12 +9,21 @@ import static java.lang.System.out;
  */
 public class Task1 implements Runnable {
 
+	/**
+	 * Attribute
+	 */
 	private Scanner in;
 
+	/**
+	 * Constructor
+	 */
 	public Task1() {
 		in = new Scanner(Dictionary.getWordAsStream());
 	}
 
+	/**
+	 * run
+	 */
 	public void run() {
 		// perform the task
 		int count = 0;
@@ -29,6 +38,10 @@ public class Task1 implements Runnable {
 		out.printf("Average length of %,d words is %.2f\n", count, averageLength);
 	}
 
+	/**
+	 *
+	 * @return String to print process of the task.
+	 */
 	public String toString() {
 		return "Starting task: read words using Scanner and a while loop";
 	}
