@@ -22,11 +22,16 @@ public class TaskTimer {
 	 * Display summary statistics and elapsed time.
 	 */
 
+
+
 	/**
 	 * Process all the words in a file (one word per line) using BufferedReader
 	 * and the readLine() method.  readLine() returns null when there is no more input.
 	 * Display summary statistics and elapsed time.
 	 */
+
+
+
 	/**
 	 * Process all the words in a file (one word per line) using BufferedReader
 	 * and the lines() method which creates a Stream of Strings (one item per line).
@@ -37,39 +42,7 @@ public class TaskTimer {
 	 * of the runnable.
 	 * Display summary statistics and elapsed time.
 	 */
-	public static void task3() {
-		// initialize: open the words file as InputStream
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
-		} catch (Exception ex) {
-			out.println("Could not open dictionary: " + ex.getMessage());
-			return;
-		}
 
-		out.println("Starting task: read words using BufferedReader and Stream");
-		long starttime = System.nanoTime();
-
-		long totalsize = 0;
-		long count = 0;
-		// This code uses Java's IntStream.average() method.
-		// But there is no way to also get the count of items.
-		// averageLength = br.lines().mapToInt( (word) -> word.length() )
-		//                         .average().getAsDouble();
-		// So instead we write out own IntConsumer to count and average the stream,
-		// and use our IntConsumer to "consume" the stream.
-		IntCounter counter = new IntCounter();
-		br.lines().mapToInt(word -> word.length()).forEach(counter);
-		// close the input
-		try {
-			br.close();
-		} catch (IOException ex) { /* ignore it */ }
-		out.printf("Average length of %,d words is %.2f\n", counter.getCount(), counter.average());
-
-		long stoptime = System.nanoTime();
-		out.printf("Elapsed time is %f sec\n", (stoptime - starttime) * 1.0E-9);
-
-	}
 
 	/**
 	 * Define a customer Consumer class that computes <b>both</b> the average
@@ -109,45 +82,8 @@ public class TaskTimer {
 	 * Then use the stream to compute summary statistics.
 	 * This is same as task3, except we use a Collector instead of Consumer.
 	 */
-	public static void task4() {
-		// initialize
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(Dictionary.getWordAsStream()));
-		} catch (Exception ex) {
-			out.println("Could not open dictionary: " + ex.getMessage());
-			return;
-		}
 
-		out.println("Starting task: read words using BufferedReader and Stream with Collector");
-		long starttime = System.nanoTime();
-		// We want the Consumer to add to the count and total length,
-		// but a Lambda can only access local variables (from surrounding scope) if
-		// they are final.  That means, we can't use an int, long, or double variable.
-		// So, use AtomicInteger and AtomicLong, which are mutable objects.
-		final AtomicLong total = new AtomicLong();
-		final AtomicInteger counter = new AtomicInteger();
-		//TODO Use a Collector instead of Consumer
-		Consumer<String> consumer = new Consumer<String>() {
-			public void accept(String word) {
-				total.getAndAdd(word.length());
-				counter.incrementAndGet();
-			}
-		};
 
-		br.lines().forEach(consumer);  // Ha! No loop.
-		// close the input
-		try {
-			br.close();
-		} catch (IOException ex) { /* ignore it */ }
-
-		int count = counter.intValue();
-		double averageLength = (count > 0) ? total.doubleValue() / count: 0.0;
-		out.printf("Average length of %,d words is %.2f\n", count, averageLength);
-
-		long stoptime = System.nanoTime();
-		out.printf("Elapsed time is %f sec\n", (stoptime - starttime) * 1.0E-9);
-	}
 
 	// Limit number of words read.  Otherwise, the next task could be very sloooow.
 	static final int MAXCOUNT = 50_000;
@@ -156,67 +92,14 @@ public class TaskTimer {
 	 * Append all the words from the dictionary to a String.
 	 * This shows why you should be careful about using "string1"+"string2".
 	 */
-	public static void task5() {
-		// initialize
-		InputStream instream = TaskTimer.class.getClassLoader().getResourceAsStream(DICTIONARY);
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(instream));
-		} catch (Exception ex) {
-			out.println("Could not open dictionary: " + ex.getMessage());
-			return;
-		}
 
-		out.println("Starting task: append " + MAXCOUNT + " words to a String using +");
-		long starttime = System.nanoTime();
-		String result = "";
-		String word = null;
-		int count = 0;
-		try {
-			while ((word = br.readLine()) != null && count < MAXCOUNT) {
-				result = result + word;
-				count++;
-			}
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		System.out.printf("Done appending %d words to string.\n", count);
-		long stoptime = System.nanoTime();
-		out.printf("Elapsed time is %f sec\n", (stoptime - starttime) * 1.0E-9);
-	}
+
 
 	/**
 	 * Append all the words from the dictionary to a StringBuilder.
 	 * Compare how long this takes to appending to String.
 	 */
-	public static void task6() {
-		// initialize
-		InputStream instream = TaskTimer.class.getClassLoader().getResourceAsStream(DICTIONARY);
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new InputStreamReader(instream));
-		} catch (Exception ex) {
-			out.println("Could not open dictionary: " + ex.getMessage());
-			return;
-		}
 
-		out.println("Starting task: append " + MAXCOUNT + " words to a StringBuilder");
-		long starttime = System.nanoTime();
-		StringBuilder result = new StringBuilder();
-		String word = null;
-		int count = 0;
-		try {
-			while ((word = br.readLine()) != null && count < MAXCOUNT) {
-				result.append(word);
-				count++;
-			}
-		} catch (IOException ioe) {
-			System.out.println(ioe.getMessage());
-		}
-		System.out.printf("Done appending %d words to StringBuilder.\n", count);
-		long stoptime = System.nanoTime();
-		out.printf("Elapsed time is %f sec\n", (stoptime - starttime) * 1.0E-9);
-	}
 
 
 	/**
@@ -227,9 +110,14 @@ public class TaskTimer {
 		task1.run();
 		Task2 task2 = new Task2();
 		task2.run();
-		task4();
-		task5();
-		task6();
+		Task3 task3 = new Task3();
+		task3.run();
+		Task4 task4 = new Task4();
+		task4.run();
+		Task5 task5 = new Task5();
+		task5.run();
+		Task6 task6 = new Task6();
+		task6.run();
 	}
 
 }
