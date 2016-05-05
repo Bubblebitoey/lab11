@@ -9,11 +9,13 @@ import static java.lang.System.out;
  */
 public class Task1 implements Runnable {
 
-	public void run() {
+	private Scanner in;
 
-		// initialize: open the words file as InputStream
-		Scanner in = new Scanner(Dictionary.getWordAsStream());
-		long starttime = System.nanoTime();
+	public Task1() {
+		in = new Scanner(Dictionary.getWordAsStream());
+	}
+
+	public void run() {
 		// perform the task
 		int count = 0;
 		long totalsize = 0;
@@ -22,10 +24,9 @@ public class Task1 implements Runnable {
 			totalsize += word.length();
 			count++;
 		}
+
 		double averageLength = ((double) totalsize) / (count > 0 ? count: 1);
-		long stoptime = System.nanoTime();
 		out.printf("Average length of %,d words is %.2f\n", count, averageLength);
-		out.printf("Elapsed time is %f sec\n", (stoptime - starttime) * 1.0E-9);
 	}
 
 	public String toString() {

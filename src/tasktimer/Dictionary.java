@@ -11,6 +11,11 @@ public class Dictionary {
 
 	private static String DICTIONARY = "wordlist.txt";
 
+	/**
+		 * Process all the words in a file using Scanner to read and parse input.
+		 * Display summary statistics and elapsed time.
+		 */
+
 	public static InputStream getWordAsStream() {
 		InputStream instream = TaskTimer.class.getClassLoader().getResourceAsStream(DICTIONARY);
 		return instream;
