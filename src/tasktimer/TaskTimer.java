@@ -16,51 +16,13 @@ import java.util.concurrent.atomic.*;  // hack, using AtomicInteger as accumulat
  */
 public class TaskTimer {
 
-	public void execAndPrint(Runnable task) {
+	public static void execAndPrint(Runnable task) {
 
+		task.toString();
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+		task.run();
+		stopWatch.stop();
+		System.out.print("Elapsed time: " + stopWatch.getElapsed());
 	}
-
-
-
-
-	/**
-	 * Process all the words in a file (one word per line) using BufferedReader
-	 * and the lines() method which creates a Stream of Strings (one item per line).
-	 * Then use the stream to compute summary statistics.
-	 * This is same as task3, except we use a Collector instead of Consumer.
-	 */
-
-
-	/**
-	 * Append all the words from the dictionary to a String.
-	 * This shows why you should be careful about using "string1"+"string2".
-	 */
-
-
-
-	/**
-	 * Append all the words from the dictionary to a StringBuilder.
-	 * Compare how long this takes to appending to String.
-	 */
-
-
-
-	/**
-	 * Run all the tasks.
-	 */
-	public static void main(String[] args) {
-		Task1 task1 = new Task1();
-		task1.run();
-		Task2 task2 = new Task2();
-		task2.run();
-		Task3 task3 = new Task3();
-		task3.run();
-		Task4 task4 = new Task4();
-		task4.run();
-		Task5 task5 = new Task5();
-		task5.run();
-		Task6 task6 = new Task6();
-		task6.run();
-	}
-
 }
