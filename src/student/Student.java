@@ -59,7 +59,6 @@ public class Student {
 
 	/**
 	 * Get the student's ID.
-	 *
 	 * @return the id
 	 */
 	public String getId() {
@@ -74,10 +73,12 @@ public class Student {
 	 * @throws IllegalArgumentException
 	 * 		if datestr is not in the correct format.
 	 */
-	//TODO Improve this code. Let LocalDate and DateTimeFormatter parse
-	// the string for you.  Eliminate the use of Scanner!
+
 	private void setBirthdate(String datestr) {
 		Scanner scanner = new Scanner(datestr);
+		/**
+		 * make pattern for birthdate
+		 */
 		birthdate = LocalDate.parse(datestr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	

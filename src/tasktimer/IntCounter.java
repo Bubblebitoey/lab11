@@ -4,9 +4,6 @@ import java.util.function.IntConsumer;
 
 /**
  * Created by bubblebitoey on 5/5/59.
- */
-
-/**
  * Define a customer Consumer class that computes <b>both</b> the average
  * and count of values.
  * An IntConsumer is a special Consumer interface the has an 'int' parameter
